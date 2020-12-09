@@ -1,0 +1,159 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "breakout": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:application": {
+          "strict": true
+        }
+      },
+      "root": "",
+      "sourceRoot": "src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/breakout",
+            "index": "src/index.html",
+            "main": "src/main.ts",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "src/app/favicon.ico",
+              "src/assets"
+            ],
+            "styles": [
+              "src/app/bootstrap/css/bootstrap.css",
+              "src/styles.css"
+            ],
+            "scripts": [
+              "src/app/js/webgazer.js",
+              "src/app/js/jquery.min.js",
+              "src/app/js/sweetalert.min.js",
+              "src/app/js/main.js",
+              "src/app/js/calibration.js",
+              "src/app/js/precision_calculation.js",
+              "src/app/js/precision_store_points.js",
+              "src/app/js/phaser.min.js",
+              "src/app/bootstrap/js/bootstrap.js",
+              "src/app/js/breakoutMultiplayer.js",
+              "src/app/js/breakout.js",
+              "src/app/js/levels.js"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "breakout:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "breakout:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "breakout:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "src/test.ts",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "tsconfig.spec.json",
+            "karmaConfig": "karma.conf.js",
+            "assets": [
+              "src/app/favicon.ico",
+              "src/assets"
+            ],
+            "styles": [
+              "src/app/bootstrap/css/bootstrap.css",
+              "src/styles.css"
+            ],
+            "scripts": [
+              "src/app/js/webgazer.js",
+              "src/app/js/jquery.min.js",
+              "src/app/js/sweetalert.min.js",
+              "src/app/js/main.js",
+              "src/app/js/calibration.js",
+              "src/app/js/precision_calculation.js",
+              "src/app/js/precision_store_points.js",
+              "src/app/js/phaser.min.js",
+              "src/app/bootstrap/js/bootstrap.js",
+              "src/app/js/breakoutMultiplayer.js",
+              "src/app/js/breakout.js",
+              "src/app/js/levels.js"
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "tsconfig.app.json",
+              "tsconfig.spec.json",
+              "e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "e2e/protractor.conf.js",
+            "devServerTarget": "breakout:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "breakout:serve:production"
+            }
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "breakout",
+  "cli": {
+    "analytics": false
+  }
+}
