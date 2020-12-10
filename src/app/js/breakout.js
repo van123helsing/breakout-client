@@ -31,13 +31,13 @@ var Breakout = new Phaser.Class({
     },
 
     preload: function () {
-        this.load.image('paddle', '/assets/paddle0.png');
-        this.load.image('ball', '/assets/ball0.png');
-        this.load.image('brick1', '/assets/blue.png');
-        this.load.image('brick2', '/assets/green.png');
-        this.load.image('brick3', '/assets/purple.png');
-        this.load.image('brick4', '/assets/red.png');
-        this.load.image('brick5', '/assets/silver.png');
+        this.load.image('paddle', 'assets/paddle0.png');
+        this.load.image('ball', 'assets/ball0.png');
+        this.load.image('brick1', 'assets/blue.png');
+        this.load.image('brick2', 'assets/green.png');
+        this.load.image('brick3', 'assets/purple.png');
+        this.load.image('brick4', 'assets/red.png');
+        this.load.image('brick5', 'assets/silver.png');
     },
 
     create: function () {

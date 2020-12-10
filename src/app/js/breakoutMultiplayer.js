@@ -27,19 +27,19 @@ var BreakoutMultiplayer = new Phaser.Class({
     },
 
     preload: function () {
-        this.load.image('paddle0', '/assets/paddle0.png');
-        this.load.image('paddle1', '/assets/paddle1.png');
-        this.load.image('paddle2', '/assets/paddle2.png');
-        this.load.image('paddle3', '/assets/paddle3.png');
-        this.load.image('brick1', '/assets/blue.png');
-        // this.load.image('brick2', '/assets/green2.png');
-        // this.load.image('brick3', '/assets/yellow2.png');
-        // this.load.image('brick4', '/assets/red2.png');
-        // this.load.image('brick5', '/assets/silver2.png');
-        this.load.image('ball', '/assets/ball0.png');
-        this.load.image('ball', '/assets/ball1.png');
-        this.load.image('ball', '/assets/ball2.png');
-        this.load.image('ball', '/assets/ball3.png');
+        this.load.image('paddle0', 'assets/paddle0.png');
+        this.load.image('paddle1', 'assets/paddle1.png');
+        this.load.image('paddle2', 'assets/paddle2.png');
+        this.load.image('paddle3', 'assets/paddle3.png');
+        this.load.image('brick1', 'assets/blue.png');
+        // this.load.image('brick2', 'assets/green2.png');
+        // this.load.image('brick3', 'assets/yellow2.png');
+        // this.load.image('brick4', 'assets/red2.png');
+        // this.load.image('brick5', 'assets/silver2.png');
+        this.load.image('ball', 'assets/ball0.png');
+        this.load.image('ball', 'assets/ball1.png');
+        this.load.image('ball', 'assets/ball2.png');
+        this.load.image('ball', 'assets/ball3.png');
     },
 
     create: function () {

@@ -15,9 +15,9 @@
 
 <div id="loading" class="centerPage">
   <div class="col align-self-center">
-    <img src="/assets/title.png" class="center">
+    <img src="assets/title.png" class="center">
     LOADING
-    <img src="/assets/spinner.svg" class="center">
+    <img src="assets/spinner.svg" class="center">
   </div>
 </div>
 
@@ -40,9 +40,9 @@
   <div class="container">
     <div class="row" style="margin-bottom: 10px">
       <div class="col-sm-8" style="display: flex;align-items: center; margin-top: 10px"><h1>Rooms:</h1></div>
-      <div class="col-sm" style="margin-top: 20px"><img src="/assets/refresh.svg"  class="transition" width="40" height="40" (click)="refreshRooms()"></div>
-      <div class="col-sm" style="margin-top: 20px"><img src="/assets/plus.svg"  class="transition" width="40" height="40" onclick="CreateRoom()"></div>
-      <div class="col-sm" style="margin-top: 20px"><img src="/assets/back.svg"  class="transition" width="40" height="40" onclick="GoToMenu()"></div>
+      <div class="col-sm" style="margin-top: 20px"><img src="assets/refresh.svg"  class="transition" width="40" height="40" (click)="refreshRooms()"></div>
+      <div class="col-sm" style="margin-top: 20px"><img src="assets/plus.svg"  class="transition" width="40" height="40" onclick="CreateRoom()"></div>
+      <div class="col-sm" style="margin-top: 20px"><img src="assets/back.svg"  class="transition" width="40" height="40" onclick="GoToMenu()"></div>
     </div>
     <div class="row" style="margin-top: 20px">
       <div class="col">
@@ -88,7 +88,7 @@
   <div class="container">
     <div class="row" style="margin-bottom: 10px">
       <div class="col-sm-8" style="display: flex;align-items: center; margin-top: 10px"><h1>Highscores:</h1></div>
-      <div class="col-sm" style="margin-top: 20px"><img src="/assets/back.svg"  class="transition" width="40" height="40" onclick="GoToMenu()"></div>
+      <div class="col-sm" style="margin-top: 20px"><img src="assets/back.svg"  class="transition" width="40" height="40" onclick="GoToMenu()"></div>
     </div>
     <div class="row">
       <div class="col">
@@ -119,7 +119,7 @@
       <div class="col-sm-8" style="display: flex;align-items: center; margin-top: 10px"><h1>Create Room</h1></div>
 <!--      <div class="col-sm" style="margin-top: 20px"></div>-->
 <!--      <div class="col-sm" style="margin-top: 20px"></div>-->
-      <div class="col-sm" style="margin-top: 20px"><img src="/assets/back.svg"  class="transition" width="40" height="40" onclick="Multiplayer()"></div>
+      <div class="col-sm" style="margin-top: 20px"><img src="assets/back.svg"  class="transition" width="40" height="40" onclick="Multiplayer()"></div>
     </div>
 
     <form [formGroup]="roomForm" (ngSubmit)="onCreateRoomSubmit(roomForm.value)">
@@ -147,8 +147,8 @@
   <div class="container">
     <div class="row" style="margin-bottom: 10px">
       <div class="col-sm-8" style="display: flex;align-items: center; margin-top: 10px"><h1>Room {{room.room_name}}</h1></div>
-      <div class="col-sm" style="margin-top: 20px"><img src="/assets/refresh.svg"  class="transition" width="40" height="40" (click)="refreshRoom()"></div>
-      <div class="col-sm" style="margin-top: 20px"><img src="/assets/back.svg"  class="transition" width="40" height="40" (click)="leaveRoom()"></div>
+      <div class="col-sm" style="margin-top: 20px"><img src="assets/refresh.svg"  class="transition" width="40" height="40" (click)="refreshRoom()"></div>
+      <div class="col-sm" style="margin-top: 20px"><img src="assets/back.svg"  class="transition" width="40" height="40" (click)="leaveRoom()"></div>
     </div>
     <div class="row">
       <div class="col">
@@ -190,7 +190,7 @@
   <div class="container">
     <div class="row" style="margin-bottom: 10px">
       <div class="col-sm-8" style="display: flex;align-items: center; margin-top: 10px"><h1>Join room {{room.room_name}}</h1></div>
-      <div class="col-sm" style="margin-top: 20px"><img src="/assets/back.svg"  class="transition" width="40" height="40" onclick="Multiplayer()"></div>
+      <div class="col-sm" style="margin-top: 20px"><img src="assets/back.svg"  class="transition" width="40" height="40" onclick="Multiplayer()"></div>
     </div>
   </div>
   <div>
@@ -216,7 +216,7 @@
   <div class="container">
     <div class="row" style="margin-bottom: 10px">
       <div class="col-sm-8" style="display: flex;align-items: center; margin-top: 10px"><h1>Authors</h1></div>
-      <div class="col-sm" style="margin-top: 20px"><img src="/assets/back.svg"  class="transition" width="40" height="40" onclick="GoToMenu()"></div>
+      <div class="col-sm" style="margin-top: 20px"><img src="assets/back.svg"  class="transition" width="40" height="40" onclick="GoToMenu()"></div>
     </div>
     <div class="row">
       <div class="col">
@@ -230,7 +230,7 @@
   <div class="container">
     <div class="row" style="margin-bottom: 10px">
       <div class="col-sm-8" style="display: flex;align-items: center; margin-top: 10px"><h1>Help</h1></div>
-      <div class="col-sm" style="margin-top: 20px"><img src="/assets/back.svg"  class="transition" width="40" height="40" onclick="GoToMenu()"></div>
+      <div class="col-sm" style="margin-top: 20px"><img src="assets/back.svg"  class="transition" width="40" height="40" onclick="GoToMenu()"></div>
     </div>
     <div class="row">
       <div class="col">
