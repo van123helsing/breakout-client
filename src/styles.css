@@ -163,6 +163,8 @@ li {
   width:30vw;
   height:30vw;
   border-radius: 10px;
+  min-width: 530px;
+  min-height: 500px;
 }
 
 canvas:not(#plotting_canvas):not(#webgazerVideoFeed):not(#webgazerVideoCanvas):not(#webgazerFaceOverlay):not(#webgazerFaceFeedbackBox) {
@@ -172,11 +174,10 @@ canvas:not(#plotting_canvas):not(#webgazerVideoFeed):not(#webgazerVideoCanvas):n
 
 .btns{
   display: block;
-  margin-top: 20px;
-  min-width: 170px;
+  margin-top: 1vw;
+  width: 70%;
   margin-left: auto;
   margin-right: auto;
-  width: 50%;
   background-image: linear-gradient(to right, #fa6ee5 0%, #7c6cf8 51%, #5aceff 100%);
   box-shadow: 0 0 20px #eee;
   border-radius: 10px;

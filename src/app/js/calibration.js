@@ -44,7 +44,7 @@ $(document).ready(function () {
         }
         CalibrationPoints[id]++; // increments values
 
-        if (CalibrationPoints[id] == 5) { //only turn to yellow after 5 clicks
+        if (CalibrationPoints[id] === 5) { //only turn to yellow after 5 clicks
             $(this).css('background-color', 'yellow');
             $(this).prop('disabled', true); //disables the button
             PointCalibrate++;
@@ -55,11 +55,11 @@ $(document).ready(function () {
         }
 
         //Show the middle calibration point after all other points have been clicked.
-        if (PointCalibrate == 8) {
+        if (PointCalibrate === 8) {
             $("#Pt5").show();
         }
 
-        if (PointCalibrate >= 1) { // last point is calibrated
+        if (PointCalibrate >= 9) { // last point is calibrated
             //using jquery to grab every element in Calibration class and hide them except the middle point.
             $(".Calibration").hide();
             $("#Pt5").show();
