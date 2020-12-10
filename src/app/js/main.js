@@ -28,8 +28,8 @@ window.onload = async function() {
                 queue.push(data.x);
                 queue.shift();
                 var paddl = game.scene.keys.breakout.paddle;
-                paddl.x = Phaser.Math.Clamp(queue.reduce((a, b) => a + b, 0)/queue.length, paddl.width*SCALE_W / 2,
-                                                    game.config.width - paddl.width*SCALE_W / 2);
+                paddl.x = Phaser.Math.Clamp(queue.reduce((a, b) => a + b, 0)/queue.length, paddl.width*SCALE_W*0.5 / 2,
+                                                    game.config.width - paddl.width*SCALE_W*0.5 / 2);
             }
             // console.log(data.x); /* data is an object containing an x and y key which are the x and y prediction coordinates (no bounds limiting) */
           //   console.log(clock); /* elapsed time in milliseconds since webgazer.begin() was called */

@@ -112,9 +112,7 @@ var Breakout = new Phaser.Class({
                         var array = $("canvas");
                         var last_element = array[array.length - 1];
                         last_element.remove();
-                        this.game.registry.destroy(); // destroy registry
-                        this.game.events.off(); // disable all active events
-                        this.ball.destroy();
+                        this.game.destroy();
                         $("#mainScreen").show();
                     } else {
                         if(this.ball.body !== undefined)

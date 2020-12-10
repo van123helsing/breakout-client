@@ -64,7 +64,7 @@ export class AppComponent implements OnInit,AfterViewInit {
 
   onCreateRoomSubmit(data1: any) {
     this.dataService.createPlayer(data1.player_name).subscribe(data  =>{
-      this.player = {player_id:-1, player_name:""}
+      this.player = {player_id:data.player_id, player_name:data.player_name}
       console.log(data);
 
       this.dataService.postRooms({room_name: data1.room_name, player_id: this.player.player_id, password: data1.password}).subscribe(data  =>{
