@@ -4,8 +4,6 @@ let levelText;
 let startButton;
 let menuButton;
 let rotation;
-let gameOverText;
-let wonTheGameText;
 
 const textStyle = {
     font: 'bold 18px Arial',
@@ -35,7 +33,7 @@ var Breakout = new Phaser.Class({
         this.load.image('ball', 'assets/ball0.png');
         this.load.image('brick1', 'assets/blue.png');
         this.load.image('brick2', 'assets/green.png');
-        this.load.image('brick3', 'assets/purple.png');
+        this.load.image('brick3', 'assets/purppple.png');
         this.load.image('brick4', 'assets/red.png');
         this.load.image('brick5', 'assets/silver.png');
     },
@@ -48,7 +46,7 @@ var Breakout = new Phaser.Class({
         this.ball = this.physics.add.image(this.cameras.main.centerX, this.game.config.height - 80, 'ball')
             .setCollideWorldBounds(true)
             .setBounce(1)
-            .setScale(SCALE_W*0.3,SCALE_H*0.3);
+            .setScale(SCALE_W*0.5,SCALE_H*0.5);
 
         var allBricks = this.setAllBricks(level1);
         for (i in allBricks) {
@@ -67,19 +65,7 @@ var Breakout = new Phaser.Class({
 
         scoreText = this.add.text(20, 20, 'Score: 0', textStyle);
         livesText = this.add.text(this.game.config.width - 20, 20, 'Lives: ' + this.lives, textStyle).setOrigin(1, 0);
-        levelText = this.add.text(this.cameras.main.centerX, 20, 'Level: ' + this.level, textStyle).setOrigin(1, 0);
-
-        gameOverText = this.add.text(this.cameras.main.centerX, this.cameras.main.centerY, 'Game over!', textStyle)
-            .setOrigin(0.5)
-            .setPadding(10)
-            .setStyle({backgroundColor: '#111', fill: '#e74c3c'})
-            .setVisible(false);
-
-        wonTheGameText = this.add.text(this.cameras.main.centerX, this.cameras.main.centerY, 'You won the game!', textStyle)
-            .setOrigin(0.5)
-            .setPadding(10)
-            .setStyle({backgroundColor: '#111', fill: '#27ae60'})
-            .setVisible(false);
+        // levelText = this.add.text(this.cameras.main.centerX, 20, 'Level: ' + this.level, textStyle).setOrigin(1, 0);
 
         startButton = this.add.text(this.cameras.main.centerX, this.cameras.main.centerY, 'Start game', textStyle)
             .setOrigin(0.5)
@@ -109,11 +95,7 @@ var Breakout = new Phaser.Class({
                     }
                 }).then(isConfirm => {
                     if (isConfirm) {
-                        var array = $("canvas");
-                        var last_element = array[array.length - 1];
-                        last_element.remove();
-                        this.game.destroy();
-                        $("#mainScreen").show();
+                      this.endGame();
                     } else {
                         if(this.ball.body !== undefined)
                             this.ball.setVelocity(velocity.x, velocity.y);
@@ -142,9 +124,8 @@ var Breakout = new Phaser.Class({
                 this.ball.setPosition(this.cameras.main.centerX, this.game.config.height - 100)
                     .setVelocity(300, -150);
             } else {
-                this.ball.destroy();
-
-                gameOverText.setVisible(true);
+              this.game.destroy();
+              this.endGameModal("Game over");
             }
         }
     },
@@ -184,18 +165,50 @@ var Breakout = new Phaser.Class({
                 brick.destroy();
 
                 if (this.bricks.countActive() === 0) {
-                    ball.destroy();
-
-                    wonTheGameText.setVisible(true);
+                  this.game.destroy();
+                  this.endGameModal("You've cleared the game!");
                 }
             }
         });
+    },
+
+    endGameModal: function (text){
+      swal({
+        title: text,
+        closeOnClickOutside: false,
+        text: "Your score is " + this.score + ". Would you like to save it?",
+        content:{
+          element: "input",
+          attributes: {
+            placeholder: "Type your name",
+            type: "text",
+          },
+        },
+        buttons: {
+          confirm:"Save",
+          cancel: "Menu"
+        }
+      }).then(isConfirm => {
+        if (isConfirm) {
+          var event = new CustomEvent('onScoreSubmit', {detail:{player_name:isConfirm, score:this.score }})
+          window.dispatchEvent(event);
+        }
+        this.endGame();
+      })
     },
 
     startGame: function () {
         startButton.destroy();
         this.ball.setVelocity(-300, -150);
         rotation = 'left';
+    },
+
+    endGame: function(){
+      var array = $("canvas");
+      var last_element = array[array.length - 1];
+      last_element.remove();
+      this.game.destroy();
+      $("#mainScreen").show();
     },
 
     setAllBricks: function (level) {

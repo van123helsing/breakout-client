@@ -8,7 +8,7 @@ import {catchError} from "rxjs/operators";
 })
 export class DataService {
 
-  private REST_API_SERVER = "https://83.212.82.139:8443/";
+  private REST_API_SERVER = "https://localhost:8443/";
   response : any;
 
   constructor(private httpClient: HttpClient) { }
@@ -28,11 +28,25 @@ export class DataService {
     return this.httpClient.post<Room>(this.REST_API_SERVER + "room",body,{'headers':headers})
   }
 
+  public postScore(player_name:string, score: number){
+    const headers = { 'content-type': 'application/json'}
+    const body = JSON.stringify({player_name:player_name, score:score});
+    console.log(body)
+    return this.httpClient.post(this.REST_API_SERVER + "score",body,{'headers':headers})
+  }
+
   public postRooms(object:roomForm):Observable<Room>{
     const headers = { 'content-type': 'application/json'}
     const body = JSON.stringify(object);
     console.log(body)
     return this.httpClient.post<Room>(this.REST_API_SERVER + "rooms",body,{'headers':headers})
+  }
+
+  public getPlayerNumber(roomId:number, playerId:number):Observable<PlayerNumber>{
+    const headers = { 'content-type': 'application/json'}
+    const body = JSON.stringify({roomId:roomId, playerId:playerId});
+    console.log(body)
+    return this.httpClient.post<PlayerNumber>(this.REST_API_SERVER + "player-number",body,{'headers':headers})
   }
 
   public createPlayer(playerName:string):Observable<Player>{
@@ -50,13 +64,6 @@ export class DataService {
       .pipe(catchError(this.handleError));
   }
 
-  public leaveRoom(idRoom:number, idPlayer:number){
-    const headers = { 'content-type': 'application/json'}
-    const body = JSON.stringify({idRoom:idRoom, idPlayer:idPlayer});
-    console.log(body)
-    return this.httpClient.post(this.REST_API_SERVER + "leave-room",body,{'headers':headers})
-  }
-
   handleError(error: HttpErrorResponse) {
     console.log(error)
     let errorMessage = 'Unknown error!';
@@ -70,10 +77,11 @@ export class DataService {
     window.alert(errorMessage);
     return throwError(errorMessage);
   }
-
-
 }
 
+interface PlayerNumber{
+  playerNumber: number;
+}
 
 interface roomForm {
   room_name: string;

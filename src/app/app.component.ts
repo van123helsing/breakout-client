@@ -1,12 +1,12 @@
-import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, HostListener, OnInit, ViewChild} from '@angular/core';
 import {DataService} from "./data.service";
 import { FormBuilder } from '@angular/forms';
 import {MatPaginator,MatPaginatorModule} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
 
 declare function JoinRoom(): any;
-declare function Room(): any;
-declare function Multiplayer(): any;
+declare function GoToMenu(): any;
+declare function StartMultiplayer(params1:number, params2:number, params3:number): any;
 
 @Component({
   selector: 'app-root',
@@ -25,6 +25,7 @@ export class AppComponent implements OnInit,AfterViewInit {
   dataSource: MatTableDataSource<RoomDump> = new MatTableDataSource<RoomDump>(this.rooms);
   displayedColumns: string[] = ['room_name', 'players', 'password', 'isJoin'];
   numberOfPlayers:number = 0;
+  playerNumber:number = 0;
 
   constructor(private dataService: DataService, private formBuilder: FormBuilder,) {
     this.roomForm = this.formBuilder.group({
@@ -70,8 +71,9 @@ export class AppComponent implements OnInit,AfterViewInit {
       this.dataService.postRooms({room_name: data1.room_name, player_id: this.player.player_id, password: data1.password}).subscribe(data  =>{
         this.room = data;
         this.numberOfPlayers = 1;
+        this.playerNumber = 1;
         console.log(data);
-        Room();
+        StartMultiplayer(this.room.room_id, this.player.player_id, this.playerNumber);
       });
     });
   }
@@ -90,9 +92,25 @@ export class AppComponent implements OnInit,AfterViewInit {
         tmp += this.room.player4 != null ? 1 : 0;
         this.numberOfPlayers = tmp;
         console.log(data);
-        Room();
+        this.dataService.getPlayerNumber(this.room.room_id, this.player.player_id).subscribe(data  =>{
+          this.playerNumber = data.playerNumber;
+          console.log(this.playerNumber);
+          StartMultiplayer(this.room.room_id, this.player.player_id, this.playerNumber);
+        });
       });
     });
+  }
+
+  @HostListener('window:onScoreSubmit', ['$event.detail'])
+  public onScoreSubmit(detail: any) {
+    console.log(detail)
+    this.dataService.postScore(detail.player_name, detail.score).subscribe(data=>{
+      GoToMenu()
+    });
+  }
+
+  public refreshScores() {
+    this.dataService.getScores().subscribe(data => this.scores = data);
   }
 
   public refreshRooms() {
@@ -102,7 +120,9 @@ export class AppComponent implements OnInit,AfterViewInit {
     this.dataSource.paginator = this.paginator;
   }
 
+  @HostListener('window:refreshRoom')
   public refreshRoom() {
+    console.log("refreshing room ...");
     this.dataService.getRoom(this.room.room_id).subscribe(data => {
       this.room = data;
       let tmp = 0;
@@ -114,19 +134,6 @@ export class AppComponent implements OnInit,AfterViewInit {
       console.log(data);
       console.log(tmp);
     });
-  }
-
-  public leaveRoom() {
-    this.dataService.leaveRoom(this.room.room_id, this.player.player_id).subscribe(data=>{
-      this.player = {player_id:-1, player_name:""}
-      this.room = {room_id:-1, room_name:"", room_password: false, player1:"", player2:"", player3:"", player4:""};
-      Multiplayer()
-    });
-
-  }
-
-  public createRoom(event: any) {
-    alert('Open ' + event);
   }
 
   public joinRoom(id: number, name: string, password: boolean) {

@@ -167,10 +167,6 @@ li {
   min-height: 500px;
 }
 
-canvas:not(#plotting_canvas):not(#webgazerVideoFeed):not(#webgazerVideoCanvas):not(#webgazerFaceOverlay):not(#webgazerFaceFeedbackBox) {
-  display: block;
-  margin: auto;
-}
 
 .btns{
   display: block;

@@ -43,7 +43,8 @@
               "src/app/bootstrap/js/bootstrap.js",
               "src/app/js/breakoutMultiplayer.js",
               "src/app/js/breakout.js",
-              "src/app/js/levels.js"
+              "src/app/js/levels.js",
+              "src/app/js/socket.io.js"
             ]
           },
           "configurations": {
@@ -120,7 +121,8 @@
               "src/app/bootstrap/js/bootstrap.js",
               "src/app/js/breakoutMultiplayer.js",
               "src/app/js/breakout.js",
-              "src/app/js/levels.js"
+              "src/app/js/levels.js",
+              "src/app/js/socket.io.js"
             ]
           }
         },
