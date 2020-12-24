@@ -33,7 +33,7 @@ var Breakout = new Phaser.Class({
         this.load.image('ball', 'assets/ball0.png');
         this.load.image('brick1', 'assets/blue.png');
         this.load.image('brick2', 'assets/green.png');
-        this.load.image('brick3', 'assets/purppple.png');
+        this.load.image('brick3', 'assets/purple.png');
         this.load.image('brick4', 'assets/red.png');
         this.load.image('brick5', 'assets/silver.png');
     },
@@ -108,6 +108,7 @@ var Breakout = new Phaser.Class({
         this.physics.add.collider(this.ball, this.bricks, this.brickHit, null, this);
         this.physics.add.collider(this.ball, this.paddle, null, null, this);
 
+        $("#singleplayer_canvas canvas").css("display", "block");
     },
 
     update: function () {
@@ -249,9 +250,10 @@ var Breakout = new Phaser.Class({
 
 let configBreakout = {
     type: Phaser.AUTO,
-    width: $(window).width()-5,
-    height: $(window).height()-5,
+    width: window.innerWidth,
+    height:window.innerHeight,
     scene: [ Breakout ],
+    parent: "singleplayer_canvas",
     backgroundColor: '#222',
     physics: {
         default: 'arcade',
