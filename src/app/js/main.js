@@ -234,7 +234,7 @@ function Room(){
 function StartMultiplayer(room_id, player_id, playerNum){
     if(loaded) {
       Room();
-      socket = io('http://83.212.82.139:5000');
+      socket = io('https://83.212.82.139:5000');
       socket.emit('joined-room', { room_id: room_id, player_id:  player_id, x:0, y:0});
       socket.on('someone joined', () => {
         var event = new CustomEvent('refreshRoom')
