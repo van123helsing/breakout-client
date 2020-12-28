@@ -15,34 +15,48 @@
 
 <div id="loading" class="centerPage">
   <div class="col align-self-center">
-    <img src="assets/title.png" class="center">
-    LOADING
-    <img src="assets/spinner.svg" class="center">
+    <img src="assets/loading.gif" class="center">
   </div>
 </div>
 
-<div id="mainScreen" class="centerPage">
-  <div class="col align-self-center">
-    <img src="assets/title.png" class="center">
-    <button type="button" class="btn btn-secondary btn-lg btns" onclick="Start()">SINGLEPLAYER</button>
-    <button type="button" class="btn btn-secondary btn-lg btns" onclick="Recalibrate()">RECALIBRATE</button>
-    <button type="button" class="btn btn-secondary btn-lg btns" onclick="HighScore()">HIGH SCORE</button>
-    <button type="button" class="btn btn-secondary btn-lg btns" onclick="Multiplayer()">MULTIPLAYER</button>
-    <button type="button" class="btn btn-secondary btn-lg btns" onclick="Help()">HELP</button>
-    <button type="button" class="btn btn-secondary btn-lg btns" onclick="Authors()">AUTHORS</button>
-  </div>
+<div id="mainScreen">
+    <div class="container fullElSize">
+      <div class="row third">
+        <div class="col" style="height:100%"><img src="assets/singleplayer.png" class="fullElSize linkHover"  onclick="Start()"></div>
+        <div class="col" style="height:100%"><img src="assets/multiplayer.png"  class="fullElSize linkHover" onclick="Multiplayer()"></div>
+        <div class="col"></div>
+        <div class="col"></div>
+        <div class="col"></div>
+        <div class="col"></div>
+      </div>
+      <div class="row third">
+        <div class="col" style="height:100%"><img src="assets/high-score.png"  class="fullElSize linkHover" onclick="HighScore()"></div>
+        <div class="col"></div>
+        <div class="col"></div>
+        <div class="col"></div>
+        <div class="col"></div>
+        <div class="col"></div>
+      </div>
+      <div class="row third">
+        <div class="col"></div>
+        <div class="col" style="height:100%"><img src="assets/calibration.png"  class="fullElSize linkHover" onclick="Recalibrate()"></div>
+        <div class="col"></div>
+        <div class="col" style="height:100%"><img src="assets/help.png"  class="fullElSize linkHover" onclick="Help()"></div>
+        <div class="col" style="height:100%"><img src="assets/authors.png"  class="fullElSize linkHover" onclick="Authors()"></div>
+        <div class="col"></div>
+      </div>
+    </div>
 </div>
 
 
 
 
-<div id="multiplayer" class="centerPage">
+<div id="multiplayer" class="centerPage centerPageWindow">
+  <h1 style="margin: 40px 30px">MULTIPLAYER ROOMS</h1>
   <div class="container">
-    <div class="row" style="margin-bottom: 10px">
-      <div class="col-sm-6" style="display: flex;align-items: center; margin-top: 10px"><h1>Rooms:</h1></div>
-      <div class="col-sm" style="margin-top: 20px"><img src="assets/refresh.svg"  class="transition" width="40" height="40" (click)="refreshRooms()"></div>
-      <div class="col-sm" style="margin-top: 20px"><img src="assets/plus.svg"  class="transition" width="40" height="40" onclick="CreateRoom()"></div>
-      <div class="col-sm" style="margin-top: 20px"><img src="assets/back.svg"  class="transition" width="40" height="40" onclick="GoToMenu()"></div>
+    <div class="row topBtns  justify-content-md-center" style="margin: 30px 90px">
+      <div class="col col-sm-2" style="display: flex" (click)="refreshRooms()"><img src="assets/refresh.svg" width="40" height="40" ></div>
+      <div class="col col-sm-2" style="display: flex" onclick="CreateRoom()"><img src="assets/plus.svg" width="40" height="40" ></div>
     </div>
     <div class="row" style="margin-top: 20px">
       <div class="col">
@@ -82,18 +96,17 @@
       </div>
     </div>
   </div>
+  <div class="bottomBtns">
+    <div style="display: flex" onclick="GoToMenu()"><img src="assets/back.svg" width="40" height="40" ><h2 class="transition">&nbsp;BACK</h2></div>
+  </div>
 </div>
 
-<div id="highscores" class="centerPage">
+<div id="highscores" class="centerPage centerPageWindow">
+  <h1 style="margin: 40px 10px">HIGHSCORES</h1>
   <div class="container">
-    <div class="row" style="margin-bottom: 10px">
-      <div class="col-sm-8" style="display: flex;align-items: center; margin-top: 10px"><h1>Highscores</h1></div>
-      <div class="col-sm" style="margin-top: 20px"><img src="assets/refresh.svg"  class="transition" width="40" height="40" (click)="refreshScores()"></div>
-      <div class="col-sm" style="margin-top: 20px"><img src="assets/back.svg"  class="transition" width="40" height="40" onclick="GoToMenu()"></div>
-    </div>
     <div class="row">
       <div class="col">
-        <table class="table table-dark">
+        <table class="table table-borderless">
           <thead>
           <tr>
             <th scope="col">Rank</th>
@@ -112,14 +125,14 @@
       </div>
     </div>
   </div>
+  <div class="bottomBtns">
+    <div class="col-sm" style="display: flex" onclick="GoToMenu()"><img src="assets/back.svg" width="40" height="40"><h2 class="transition">BACK</h2></div>
+  </div>
 </div>
 
-<div id="createRoom" class="centerPage">
+<div id="createRoom" class="centerPage centerPageWindow">
+  <h1 style="margin:  40px 10px">CREATE ROOM</h1>
   <div class="container">
-    <div class="row" style="margin-bottom: 10px">
-      <div class="col-sm-8" style="display: flex;align-items: center; margin-top: 10px"><h1>Create Room</h1></div>
-      <div class="col-sm" style="margin-top: 20px"><img src="assets/back.svg"  class="transition" width="40" height="40" onclick="Multiplayer()"></div>
-    </div>
 
     <form [formGroup]="roomForm" (ngSubmit)="onCreateRoomSubmit(roomForm.value)">
       <div class="form-group">
@@ -140,6 +153,9 @@
       <button class="btn btn-primary" type="submit" >Create</button>
     </form>
   </div>
+  <div class="bottomBtns">
+    <div class="col-sm" style="display: flex" onclick="Multiplayer()"><img src="assets/back.svg" width="40" height="40"><h2 class="transition">BACK</h2></div>
+  </div>
 </div>
 
 <div id="room">
@@ -154,10 +170,10 @@
   </div>
 </div>
 
-<div id="joinRoom" class="centerPage">
+<div id="joinRoom" class="centerPage centerPageWindow">
+  <h1 style="margin:  40px 10px">JOIN ROOM {{room.room_name}}</h1>
   <div class="container">
     <div class="row" style="margin-bottom: 10px">
-      <div class="col-sm-8" style="display: flex;align-items: center; margin-top: 10px"><h1>Join room {{room.room_name}}</h1></div>
       <div class="col-sm" style="margin-top: 20px"><img src="assets/back.svg"  class="transition" width="40" height="40" onclick="Multiplayer()"></div>
     </div>
   </div>
@@ -180,31 +196,31 @@
 </div>
 
 
-<div id="authors" class="centerPage">
+<div id="authors" class="centerPage centerPageWindow">
+  <h1 style="margin: 40px 10px">AUTHORS</h1>
   <div class="container">
-    <div class="row" style="margin-bottom: 10px">
-      <div class="col-sm-8" style="display: flex;align-items: center; margin-top: 10px"><h1>Authors</h1></div>
-      <div class="col-sm" style="margin-top: 20px"><img src="assets/back.svg"  class="transition" width="40" height="40" onclick="GoToMenu()"></div>
-    </div>
     <div class="row">
       <div class="col">
-
+          This game was programmed by <a href="mailto:jansmi@gmail.com">Jan Šmid</a> and designed by <a href="mailto:bmusil@vsup.cz">Bronislav Musil</a>.
       </div>
     </div>
   </div>
+  <div class="bottomBtns">
+    <div class="col-sm" style="display: flex" onclick="GoToMenu()"><img src="assets/back.svg" width="40" height="40"><h2 class="transition">BACK</h2></div>
+  </div>
 </div>
 
-<div id="help" class="centerPage">
-  <div class="container">
-    <div class="row" style="margin-bottom: 10px">
-      <div class="col-sm-8" style="display: flex;align-items: center; margin-top: 10px"><h1>Help</h1></div>
-      <div class="col-sm" style="margin-top: 20px"><img src="assets/back.svg"  class="transition" width="40" height="40" onclick="GoToMenu()"></div>
-    </div>
-    <div class="row">
-      <div class="col">
+<div id="help" class="centerPage centerPageWindow">
+    <h1 style="margin: 40px 10px">HELP</h1>
+    <div class="container">
+      <div class="row">
+        <div class="col">
 
+        </div>
       </div>
     </div>
+  <div class="bottomBtns">
+    <div class="col-sm" style="display: flex" onclick="GoToMenu()"><img src="assets/back.svg" width="40" height="40"><h2 class="transition">BACK</h2></div>
   </div>
 </div>
 

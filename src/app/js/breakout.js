@@ -5,10 +5,6 @@ let startButton;
 let menuButton;
 let rotation;
 
-const textStyle = {
-    font: 'bold 18px Arial',
-    fill: '#FFF'
-};
 
 
 var Breakout = new Phaser.Class({
@@ -29,13 +25,13 @@ var Breakout = new Phaser.Class({
     },
 
     preload: function () {
-        this.load.image('paddle', 'assets/paddle0.png');
-        this.load.image('ball', 'assets/ball0.png');
-        this.load.image('brick1', 'assets/blue.png');
-        this.load.image('brick2', 'assets/green.png');
-        this.load.image('brick3', 'assets/purple.png');
-        this.load.image('brick4', 'assets/red.png');
-        this.load.image('brick5', 'assets/silver.png');
+        this.load.image('paddle', 'assets/paddle.png');
+        this.load.image('ball', 'assets/ball.png');
+        this.load.image('brick1', 'assets/tile.png');
+        // this.load.image('brick2', 'assets/green.png');
+        // this.load.image('brick3', 'assets/purple.png');
+        // this.load.image('brick4', 'assets/red.png');
+        // this.load.image('brick5', 'assets/silver.png');
     },
 
     create: function () {
@@ -63,11 +59,11 @@ var Breakout = new Phaser.Class({
         }
 
 
-        scoreText = this.add.text(20, 20, 'Score: 0', textStyle);
-        livesText = this.add.text(this.game.config.width - 20, 20, 'Lives: ' + this.lives, textStyle).setOrigin(1, 0);
+        scoreText = this.add.text(20, 20, 'Score: 0');
+        livesText = this.add.text(this.game.config.width - 20, 20, 'Lives: ' + this.lives).setOrigin(1, 0);
         // levelText = this.add.text(this.cameras.main.centerX, 20, 'Level: ' + this.level, textStyle).setOrigin(1, 0);
 
-        startButton = this.add.text(this.cameras.main.centerX, this.cameras.main.centerY, 'Start game', textStyle)
+        startButton = this.add.text(this.cameras.main.centerX, this.cameras.main.centerY, 'Start game')
             .setOrigin(0.5)
             .setPadding(10)
             .setStyle({backgroundColor: '#111'})
@@ -76,7 +72,7 @@ var Breakout = new Phaser.Class({
             .on('pointerover', () => startButton.setStyle({fill: '#f39c12'}))
             .on('pointerout', () => startButton.setStyle({fill: '#FFF'}));
 
-        menuButton = this.add.text(this.game.config.width - 60, 70, 'Menu', textStyle)
+        menuButton = this.add.text(this.game.config.width - 60, 70, 'Menu')
             .setOrigin(0.5)
             .setPadding(10)
             .setStyle({backgroundColor: '#111'})
@@ -87,11 +83,11 @@ var Breakout = new Phaser.Class({
                     this.ball.setVelocity(0, 0);
                 }
                 swal({
-                    title: "Exit Game?",
+                    title: "EXIT GAME?",
                     text: "If you go to the menu the game will end. Sure you wanna do this?",
                     buttons: {
-                        cancel: "Cancel",
-                        confirm: "Exit"
+                        cancel: "CANCEL",
+                        confirm: "EXIT"
                     }
                 }).then(isConfirm => {
                     if (isConfirm) {
@@ -126,51 +122,40 @@ var Breakout = new Phaser.Class({
                     .setVelocity(300, -150);
             } else {
               this.game.destroy();
-              this.endGameModal("Game over");
+              this.endGameModal("GAME OVER");
             }
         }
     },
 
     brickHit: function (ball, brick) {
-        var tmpScore = 0
-        switch (brick.texture.key){
-            case "brick1":
-                tmpScore = 5;
-                break;
-            case "brick2":
-                tmpScore = 10;
-                break;
-            case "brick3":
-                tmpScore = 15;
-                break;
-            case "brick4":
-                tmpScore = 20;
-                break;
-            case "brick5":
-                tmpScore = 25;
-                break;
-        }
+        var tmpScore = 25
+        // switch (brick.texture.key){
+        //     case "brick1":
+        //         tmpScore = 5;
+        //         break;
+        //     case "brick2":
+        //         tmpScore = 10;
+        //         break;
+        //     case "brick3":
+        //         tmpScore = 15;
+        //         break;
+        //     case "brick4":
+        //         tmpScore = 20;
+        //         break;
+        //     case "brick5":
+        //         tmpScore = 25;
+        //         break;
+        // }
 
         this.score += tmpScore;
         scoreText.setText(`Score: ${this.score}`);
 
-        this.tweens.add({
-            targets: brick,
-            scaleX: 0,
-            scaleY: 0,
-            ease: 'Power1',
-            duration: 500,
-            delay: 250,
-            angle: 180,
-            onComplete: () => {
-                brick.destroy();
+      brick.destroy();
 
-                if (this.bricks.countActive() === 0) {
-                  this.game.destroy();
-                  this.endGameModal("You've cleared the game!");
-                }
-            }
-        });
+      if (this.bricks.countActive() === 0) {
+        this.game.destroy();
+        this.endGameModal("You've cleared the game!");
+      }
     },
 
     endGameModal: function (text){
@@ -186,8 +171,8 @@ var Breakout = new Phaser.Class({
           },
         },
         buttons: {
-          confirm:"Save",
-          cancel: "Menu"
+          confirm:"SAVE",
+          cancel: "MENU"
         }
       }).then(isConfirm => {
         if (isConfirm) {
@@ -205,9 +190,7 @@ var Breakout = new Phaser.Class({
     },
 
     endGame: function(){
-      var array = $("canvas");
-      var last_element = array[array.length - 1];
-      last_element.remove();
+      $("#singleplayer_canvas canvas").remove();
       this.game.destroy();
       $("#mainScreen").show();
     },
@@ -238,8 +221,8 @@ var Breakout = new Phaser.Class({
 
                 array.push({
                     brick: brickName,
-                    x: j * 50*SCALE_W,
-                    y: 100 + i * 50*SCALE_H
+                    x: j * 80*SCALE_W,
+                    y: 100 + i * 80*SCALE_H
                 });
             }
         }
@@ -254,7 +237,7 @@ let configBreakout = {
     height:window.innerHeight,
     scene: [ Breakout ],
     parent: "singleplayer_canvas",
-    backgroundColor: '#222',
+    backgroundColor: '#000',
     physics: {
         default: 'arcade',
     }

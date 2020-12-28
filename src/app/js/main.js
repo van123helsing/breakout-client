@@ -193,6 +193,8 @@ function Multiplayer(){
 function HighScore(){
   $("#mainScreen").hide();
   $("#highscores").show();
+  var event = new CustomEvent('refreshScores')
+  window.dispatchEvent(event);
 }
 
 function Help(){

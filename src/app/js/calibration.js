@@ -16,7 +16,7 @@ function ClearCanvas() {
 function PopUpInstruction() {
     ClearCanvas();
     swal({
-        title: "Calibration",
+        title: "CALIBRATION",
         text: "Please click on each of the 9 points on the screen. You must click on each point 5 times till it goes yellow. This will calibrate your eye movements.",
         buttons: {
             cancel: false,
@@ -70,7 +70,7 @@ $(document).ready(function () {
 
             // notification for the measurement process
             swal({
-                title: "Calculating measurement",
+                title: "CALCULATING MEASURMENT",
                 text: "Please don't move your mouse & stare at the middle dot for the next 5 seconds. This will allow us to calculate the accuracy of our predictions.",
                 closeOnEsc: false,
                 closeOnClickOutside: false,
@@ -86,12 +86,16 @@ $(document).ready(function () {
                         stop_storing_points_variable(); // stop storing the prediction points
                         var past50 = webgazer.getStoredPoints(); // retrieve the stored points
                         var precision_measurement = calculatePrecision(past50);
+                        const wrapper = document.createElement('div');
+                        wrapper.innerHTML = "<p>Your accuracy measure is </p> <br>" +
+                          "<h1 style='text-align: center; '>" + precision_measurement + "&nbsp;%" +  "</h1>"
                         swal({
-                            title: "Your accuracy measure is " + precision_measurement + "%",
+                            title: "CALCULATING DONE",
+                            content: wrapper,
                             closeOnClickOutside: false,
                             buttons: {
-                                cancel: "Recalibrate",
-                                confirm: mode === "menu" ? "Menu" : "Start game",
+                                cancel: "RECALIBRATE",
+                                confirm: mode === "menu" ? "MENU" : "START",
                             }
                         }).then(isConfirm => {
                             if (isConfirm) {

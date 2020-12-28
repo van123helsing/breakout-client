@@ -109,6 +109,7 @@ export class AppComponent implements OnInit,AfterViewInit {
     });
   }
 
+  @HostListener('window:refreshScores')
   public refreshScores() {
     this.dataService.getScores().subscribe(data => this.scores = data);
   }
