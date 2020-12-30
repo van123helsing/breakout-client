@@ -19,8 +19,8 @@ function PopUpInstruction() {
         title: "CALIBRATION",
         text: "Please click on each of the 9 points on the screen. You must click on each point 5 times till it goes yellow. This will calibrate your eye movements.",
         buttons: {
-            cancel: "\u2190BACK",
-            confirm: "OK\u2192"
+            cancel: "\u2190 BACK",
+            confirm: "OK \u2192"
         }
     }).then(isConfirm => {
       if (isConfirm) {
@@ -80,7 +80,7 @@ $(document).ready(function () {
                 closeOnClickOutside: false,
                 closeModal: true,
                 buttons: {
-                  confirm:"OK\u2192"
+                  confirm:"OK \u2192"
                 }
             }).then(isConfirm => {
 
@@ -101,8 +101,8 @@ $(document).ready(function () {
                             content: wrapper,
                             closeOnClickOutside: false,
                             buttons: {
-                                cancel: "\u2190RECALIBRATE",
-                                confirm: mode === "menu" ? "MENU\u2192" : "START\u2192",
+                                cancel: "\u2190 RECALIBRATE",
+                                confirm: mode === "menu" ? "MENU \u2192" : "START \u2192",
                             }
                         }).then(isConfirm => {
                             if (isConfirm) {

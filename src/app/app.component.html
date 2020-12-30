@@ -91,7 +91,7 @@
     </div>
   </div>
   <div class="bottomBtns">
-    <div style="display: flex" onclick="GoToMenu()"><h2 class="transition">&#x2190;BACK</h2></div>
+    <div style="display: flex" onclick="GoToMenu()"><h2 class="transition">&#x2190;&nbsp;BACK</h2></div>
   </div>
 </div>
 
@@ -120,7 +120,7 @@
     </div>
   </div>
   <div class="bottomBtns">
-    <div class="col-sm" style="display: flex" onclick="GoToMenu()"><img src="assets/back.svg" width="40" height="40"><h2 class="transition">BACK</h2></div>
+    <div class="col-sm" style="display: flex" onclick="GoToMenu()"><h2 class="transition">&#x2190;&nbsp;BACK</h2></div>
   </div>
 </div>
 
@@ -148,7 +148,7 @@
     </form>
   </div>
   <div class="bottomBtns">
-    <div class="col-sm" style="display: flex" onclick="Multiplayer()"><h2 class="transition">&#x2190;BACK</h2></div>
+    <div class="col-sm" style="display: flex" onclick="Multiplayer()"><h2 class="transition">&#x2190;&nbsp;BACK</h2></div>
   </div>
 </div>
 
@@ -166,11 +166,6 @@
 
 <div id="joinRoom" class="centerPage centerPageWindow">
   <h1 style="margin:  40px 10px">JOIN ROOM {{room.room_name}}</h1>
-  <div class="container">
-    <div class="row" style="margin-bottom: 10px">
-      <div class="col-sm" style="margin-top: 20px"><img src="assets/back.svg"  class="transition" width="40" height="40" onclick="Multiplayer()"></div>
-    </div>
-  </div>
   <div>
     <form [formGroup]="joinForm" (ngSubmit)="onJoinRoomSubmit(joinForm.value)">
 
@@ -187,6 +182,9 @@
       <button class="btn btn-primary" type="submit">Join</button>
     </form>
   </div>
+  <div class="bottomBtns">
+    <div class="col-sm" style="display: flex" onclick="Multiplayer()"><h2 class="transition">&#x2190;&nbsp;BACK</h2></div>
+  </div>
 </div>
 
 
@@ -200,7 +198,7 @@
     </div>
   </div>
   <div class="bottomBtns">
-    <div class="col-sm" style="display: flex" onclick="GoToMenu()"><h2 class="transition">&#x2190;BACK</h2></div>
+    <div class="col-sm" style="display: flex" onclick="GoToMenu()"><h2 class="transition">&#x2190;&nbsp;BACK</h2></div>
   </div>
 </div>
 
@@ -214,7 +212,7 @@
       </div>
     </div>
   <div class="bottomBtns">
-    <div class="col-sm" style="display: flex" onclick="GoToMenu()"><h2 class="transition">&#x2190;BACK</h2></div>
+    <div class="col-sm" style="display: flex" onclick="GoToMenu()"><h2 class="transition">&#x2190;&nbsp;BACK</h2></div>
   </div>
 </div>
 
