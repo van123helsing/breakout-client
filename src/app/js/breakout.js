@@ -1,11 +1,19 @@
-let scoreText;
-let livesText;
+let scoreText1;
+let scoreText2;
+let livesText1;
+let livesText2;
 let levelText;
 let startButton;
 let menuButton;
 let rotation;
 
+const textStyle1 = {
+  font: '17px NeueRegular',
+};
 
+const textStyle = {
+  font: '17px NeueUltrabold',
+};
 
 var Breakout = new Phaser.Class({
 
@@ -59,23 +67,24 @@ var Breakout = new Phaser.Class({
         }
 
 
-        scoreText = this.add.text(20, 20, 'Score: 0');
-        livesText = this.add.text(this.game.config.width - 20, 20, 'Lives: ' + this.lives).setOrigin(1, 0);
+        scoreText1 = this.add.text(20, 20, 'Score: ',textStyle1);
+        scoreText2 = this.add.text(85, 20, '0', textStyle);
+        livesText1 = this.add.text(20, 50, 'Lives: ' ,textStyle1);
+        livesText2 = this.add.text(85, 50, this.lives, textStyle);
         // levelText = this.add.text(this.cameras.main.centerX, 20, 'Level: ' + this.level, textStyle).setOrigin(1, 0);
 
-        startButton = this.add.text(this.cameras.main.centerX, this.cameras.main.centerY, 'Start game')
+        startButton = this.add.text(this.cameras.main.centerX, this.cameras.main.centerY, 'Start game', textStyle1)
             .setOrigin(0.5)
             .setPadding(10)
             .setStyle({backgroundColor: '#111'})
             .setInteractive({useHandCursor: true})
             .on('pointerdown', () => this.startGame.call(this))
-            .on('pointerover', () => startButton.setStyle({fill: '#f39c12'}))
-            .on('pointerout', () => startButton.setStyle({fill: '#FFF'}));
+            .on('pointerover', () => startButton.setStyle({color: '#f39c12'}))
+            .on('pointerout', () => startButton.setStyle({color: '#FFF'}));
 
-        menuButton = this.add.text(this.game.config.width - 60, 70, 'Menu')
-            .setOrigin(0.5)
+        menuButton = this.add.text(this.game.config.width - 60, 20, 'MENU', textStyle1)
             .setPadding(10)
-            .setStyle({backgroundColor: '#111'})
+            .setStyle({color: '#FFF'})
             .setInteractive({useHandCursor: true})
             .on('pointerdown', () => {
                 if(this.ball.body !== undefined) {
@@ -98,8 +107,8 @@ var Breakout = new Phaser.Class({
                     }
                 })
             })
-            .on('pointerover', () => menuButton.setStyle({fill: '#f39c12'}))
-            .on('pointerout', () => menuButton.setStyle({fill: '#FFF'}));
+            .on('pointerover', () => menuButton.setStyle({color: '#f39c12'}))
+            .on('pointerout', () => menuButton.setStyle({color: '#FFF'}));
 
         this.physics.add.collider(this.ball, this.bricks, this.brickHit, null, this);
         this.physics.add.collider(this.ball, this.paddle, null, null, this);
@@ -116,7 +125,7 @@ var Breakout = new Phaser.Class({
             this.lives--;
 
             if (this.lives > 0) {
-                livesText.setText(`Lives: ${this.lives}`);
+                livesText2.setText(`${this.lives}`);
 
                 this.ball.setPosition(this.cameras.main.centerX, this.game.config.height - 100)
                     .setVelocity(300, -150);
@@ -148,7 +157,7 @@ var Breakout = new Phaser.Class({
         // }
 
         this.score += tmpScore;
-        scoreText.setText(`Score: ${this.score}`);
+        scoreText2.setText(`${this.score}`);
 
       brick.destroy();
 
@@ -159,24 +168,21 @@ var Breakout = new Phaser.Class({
     },
 
     endGameModal: function (text){
+      const wrapper = document.createElement('div');
+      wrapper.innerHTML = "<p style='margin-block-start: 0;margin-block-end: 0'>Your score is <b>" + this.score +  "</b></p>" +
+        "<p style='margin-block-start: 0;margin-block-end: 10px'>Would you like to save it?</p>"+
+        "<form><input id='user_name' type=\"text\" name=\"user_name\" placeholder='Type your name'></form>"
       swal({
         title: text,
         closeOnClickOutside: false,
-        text: "Your score is " + this.score + ". Would you like to save it?",
-        content:{
-          element: "input",
-          attributes: {
-            placeholder: "Type your name",
-            type: "text",
-          },
-        },
+        content:wrapper,
         buttons: {
           confirm:"SAVE",
           cancel: "MENU"
         }
       }).then(isConfirm => {
         if (isConfirm) {
-          var event = new CustomEvent('onScoreSubmit', {detail:{player_name:isConfirm, score:this.score }})
+          var event = new CustomEvent('onScoreSubmit', {detail:{player_name:$("#user_name").val(), score:this.score }})
           window.dispatchEvent(event);
         }
         this.endGame();

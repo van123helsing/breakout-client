@@ -19,11 +19,15 @@ function PopUpInstruction() {
         title: "CALIBRATION",
         text: "Please click on each of the 9 points on the screen. You must click on each point 5 times till it goes yellow. This will calibrate your eye movements.",
         buttons: {
-            cancel: false,
-            confirm: true
+            cancel: "\u2190BACK",
+            confirm: "OK\u2192"
         }
     }).then(isConfirm => {
+      if (isConfirm) {
         ShowCalibrationPoint();
+      } else {
+        $("#mainScreen").show();
+      }
     });
 
 }
@@ -74,7 +78,10 @@ $(document).ready(function () {
                 text: "Please don't move your mouse & stare at the middle dot for the next 5 seconds. This will allow us to calculate the accuracy of our predictions.",
                 closeOnEsc: false,
                 closeOnClickOutside: false,
-                closeModal: true
+                closeModal: true,
+                buttons: {
+                  confirm:"OK\u2192"
+                }
             }).then(isConfirm => {
 
                 // makes the variables true for 5 seconds & plots the points
@@ -87,15 +94,15 @@ $(document).ready(function () {
                         var past50 = webgazer.getStoredPoints(); // retrieve the stored points
                         var precision_measurement = calculatePrecision(past50);
                         const wrapper = document.createElement('div');
-                        wrapper.innerHTML = "<p>Your accuracy measure is </p> <br>" +
-                          "<h1 style='text-align: center; '>" + precision_measurement + "&nbsp;%" +  "</h1>"
+                        wrapper.innerHTML = "<p>Your accuracy measure is </p>" +
+                          "<h1 style='text-align: center; '>" + precision_measurement + "%" +  "</h1>"
                         swal({
                             title: "CALCULATING DONE",
                             content: wrapper,
                             closeOnClickOutside: false,
                             buttons: {
-                                cancel: "RECALIBRATE",
-                                confirm: mode === "menu" ? "MENU" : "START",
+                                cancel: "\u2190RECALIBRATE",
+                                confirm: mode === "menu" ? "MENU\u2192" : "START\u2192",
                             }
                         }).then(isConfirm => {
                             if (isConfirm) {
