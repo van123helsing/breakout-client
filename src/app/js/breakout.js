@@ -50,7 +50,7 @@ var Breakout = new Phaser.Class({
         this.ball = this.physics.add.image(this.cameras.main.centerX, this.game.config.height - 80, 'ball')
             .setCollideWorldBounds(true)
             .setBounce(1)
-            .setScale(SCALE_W*0.5,SCALE_H*0.5);
+            .setScale(SCALE_W*0.5,SCALE_W*0.5);
 
         var allBricks = this.setAllBricks(level1);
         for (i in allBricks) {

@@ -200,7 +200,7 @@ li {
   height:40vw;
   min-width: 530px;
   min-height: 500px;
-  background-image: url('assets/dialog.png');
+  background-image: url('assets/modal.png');
   background-repeat: no-repeat;
   background-size: 100% 100%;
   color:  white;
@@ -248,6 +248,7 @@ li {
   color: white;
   height: 25%;
   font-size: 2vh;
+  max-width: 100%;
 }
 
 .swal-content {
@@ -258,6 +259,7 @@ li {
   height: 25%;
   margin-top: 0;
   position: relative;
+  max-width: 100%;
 }
 
 .swal-footer {
@@ -289,7 +291,7 @@ li {
   width: 30vw;
   height: 15vw;
   background-color: #000111;
-  background-image: url('assets/modal.png');
+  background-image: url('assets/dialog.png');
   background-repeat: no-repeat;
   background-size: 100% 100%;
   color:  white;
