@@ -80,6 +80,7 @@ var BreakoutMultiplayer = new Phaser.Class({
                 this.physics.add.collider(this.balls[i], this.paddls[j], this.paddleHit, null, this);
         for(var i = 0; i<4; i++)
             for(var j = 0; j<4; j++)
+              if(i!==j)
                 this.physics.add.collider(this.paddls[i], this.paddls[j], null, null, this);
     },
 
@@ -109,34 +110,34 @@ var BreakoutMultiplayer = new Phaser.Class({
   endGameModal: function (){
     const sorted = this.sort(this.scores);
     const wrapper = document.createElement('div');
-    wrapper.innerHTML = "<table class=\"table table-borderless\">" +
+    wrapper.innerHTML = "<table class=\"table table-borderless\" style='font-size: 1.3vh;'>" +
       "  <thead>" +
       "    <tr>" +
-      "      <th scope=\"col\">Place</th>" +
-      "      <th colspan=\"2\">Name</th>" +
-      "      <th colspan=\"2\">Score</th>" +
+      "      <th scope=\"col\" style='padding: 0 !important;'>Place</th>" +
+      "      <th colspan=\"2\" style='padding: 0 !important;'>Name</th>" +
+      "      <th colspan=\"2\" style='padding: 0 !important;'>Score</th>" +
       "    </tr>" +
       "  </thead>" +
       "  <tbody>" +
       "    <tr>" +
-      "      <th scope=\"row\">1st</th>" +
-      "      <td colspan=\"2\">" + this.getPlayerName(sorted[3]) + "</td>" +
-      "      <td colspan=\"2\">" + this.scores[sorted[3]] + "</td>" +
+      "      <th scope=\"row\" style='padding: 0 !important;'>1st</th>" +
+      "      <td colspan=\"2\" style='padding: 0 !important;'>" + this.getPlayerName(sorted[3]) + "</td>" +
+      "      <td colspan=\"2\" style='padding: 0 !important;'>" + this.scores[sorted[3]] + "</td>" +
       "    </tr>" +
       "    <tr>" +
-      "      <th scope=\"row\">2nd</th>" +
-      "      <td colspan=\"2\">" + this.getPlayerName(sorted[2]) + "</td>" +
-      "      <td colspan=\"2\">" + this.scores[sorted[2]] + "</td>" +
+      "      <th scope=\"row\" style='padding: 0 !important;'>2nd</th>" +
+      "      <td colspan=\"2\" style='padding: 0 !important;'>" + this.getPlayerName(sorted[2]) + "</td>" +
+      "      <td colspan=\"2\" style='padding: 0 !important;'>" + this.scores[sorted[2]] + "</td>" +
       "    </tr>" +
       "    <tr>" +
-      "      <th scope=\"row\">3rd</th>" +
-      "      <td colspan=\"2\">" + this.getPlayerName(sorted[1]) + "</td>" +
-      "      <td colspan=\"2\">" + this.scores[sorted[1]] + "</td>" +
+      "      <th scope=\"row\" style='padding: 0 !important;'>3rd</th>" +
+      "      <td colspan=\"2\" style='padding: 0 !important;'>" + this.getPlayerName(sorted[1]) + "</td>" +
+      "      <td colspan=\"2\" style='padding: 0 !important;'>" + this.scores[sorted[1]] + "</td>" +
       "    </tr>" +
       "<tr>" +
-      "      <th scope=\"row\">4th</th>" +
-      "      <td colspan=\"2\">" + this.getPlayerName(sorted[0]) + "</td>" +
-      "      <td colspan=\"2\">" + this.scores[sorted[0]] + "</td>" +
+      "      <th scope=\"row\" style='padding: 0 !important;'>4th</th>" +
+      "      <td colspan=\"2\" style='padding: 0 !important;'>" + this.getPlayerName(sorted[0]) + "</td>" +
+      "      <td colspan=\"2\" style='padding: 0 !important;'>" + this.scores[sorted[0]] + "</td>" +
       "    </tr>" +
       "  </tbody>" +
       "</table>";

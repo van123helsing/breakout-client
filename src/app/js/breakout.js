@@ -67,25 +67,26 @@ var Breakout = new Phaser.Class({
         }
 
 
-        scoreText1 = this.add.text(20, 20, 'Score: ',textStyle1);
-        scoreText2 = this.add.text(85, 20, '0', textStyle);
-        livesText1 = this.add.text(20, 50, 'Lives: ' ,textStyle1);
-        livesText2 = this.add.text(85, 50, this.lives, textStyle);
+        scoreText1 = this.add.text(20, 70, 'Score: ',textStyle1);
+        scoreText2 = this.add.text(85, 70, '0', textStyle);
+        livesText1 = this.add.text(20, 100, 'Lives: ' ,textStyle1);
+        livesText2 = this.add.text(85, 100, this.lives, textStyle);
         // levelText = this.add.text(this.cameras.main.centerX, 20, 'Level: ' + this.level, textStyle).setOrigin(1, 0);
 
-        startButton = this.add.text(this.cameras.main.centerX, this.cameras.main.centerY, 'Start game', textStyle1)
+        startButton = this.add.text(this.cameras.main.centerX, this.cameras.main.centerY, 'START GAME', textStyle1)
             .setOrigin(0.5)
             .setPadding(10)
-            .setStyle({backgroundColor: '#111'})
+            .setFontSize(25)
             .setInteractive({useHandCursor: true})
             .on('pointerdown', () => this.startGame.call(this))
             .on('pointerover', () => startButton.setStyle({color: '#f39c12'}))
             .on('pointerout', () => startButton.setStyle({color: '#FFF'}));
 
-        menuButton = this.add.text(this.game.config.width - 60, 20, 'MENU', textStyle1)
+        menuButton = this.add.text(this.game.config.width - 100, 60, 'MENU', textStyle1)
             .setPadding(10)
             .setStyle({color: '#FFF'})
             .setInteractive({useHandCursor: true})
+            .setFontSize(25)
             .on('pointerdown', () => {
                 if(this.ball.body !== undefined) {
                     var velocity = this.ball.body.velocity.clone()
@@ -228,7 +229,7 @@ var Breakout = new Phaser.Class({
                 array.push({
                     brick: brickName,
                     x: j * 80*SCALE_W,
-                    y: 100 + i * 80*SCALE_H
+                    y: 70 + i * 80*SCALE_H
                 });
             }
         }
